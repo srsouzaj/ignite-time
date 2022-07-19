@@ -6,6 +6,6 @@ export interface ButtonInterface {
   variant?: ButtonVariant
 }
 
-export function Button({ variant = 'primary' }: ButtonInterface) {
+export function Button({ variant }: ButtonInterface) {
   return <ButtonContainer variant={variant}>Enviar</ButtonContainer>
 }
