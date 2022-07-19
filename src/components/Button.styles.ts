@@ -16,10 +16,4 @@ export const ButtonContainer = styled.button<ButtonInterface>`
   margin: 8px;
 
   background-color: ${(props) => props.theme.primary};
-
-  /* ${(props) => {
-    return css`
-      background-color: ${buttonVariant[props.variant]};
-    `;
-  }} */
 `;

@@ -1,7 +1,7 @@
 import { Button } from "./components/Button";
 
 import { ThemeProvider } from "styled-components";
-import { defaultTheme } from "./components/styles/themes/default";
+import { defaultTheme } from "./styles/themes/default";
 
 export function App() {
   return (
