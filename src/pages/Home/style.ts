@@ -23,7 +23,6 @@ export const FormContainer = styled.div`
   font-weight: bold;
   flex-wrap: wrap;
 `
-
 const BaseInput = styled.input`
   background: transparent;
   height: 2.5rem;
@@ -44,12 +43,14 @@ const BaseInput = styled.input`
 
 export const TaskInput = styled(BaseInput)`
   flex: 1;
+  &::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
 `
 
 export const MinutesAmountInput = styled(BaseInput)`
   width: 4rem;
 `
-
 export const CountdownContainer = styled.div`
   font-family: 'Roboto Mono', monospace;
   font-size: 10rem;
@@ -71,7 +72,6 @@ export const Separator = styled.div`
   display: flex;
   justify-content: center;
 `
-
 export const StartCountdownButton = styled.button`
   width: 100%;
   border: 0;
