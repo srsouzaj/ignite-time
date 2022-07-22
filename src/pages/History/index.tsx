@@ -26,8 +26,8 @@ export function History() {
             </tr>
             <tr>
               <td>Tarefa</td>
-              <td>20 minutos</td>
-              <td>Há 2 meses</td>
+              <td>25 minutos</td>
+              <td>Há 1 meses</td>
               <td>
                 <Status statusColor="yellow">Aguardando</Status>
               </td>
