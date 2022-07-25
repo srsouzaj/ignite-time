@@ -32,6 +32,8 @@ interface Cycle {
 export function Home() {
   const [cycles, setCycles] = React.useState<Cycle[]>([])
   const [activeCycleId, setActiveCycleId] = React.useState<string | null>(null)
+  const [amountSecondsPassed, setAmountSecondsPassed] =
+    React.useState<number>(0)
 
   const { register, handleSubmit, watch, reset } =
     useForm<NewCycleFormDataInterface>({
@@ -58,6 +60,14 @@ export function Home() {
   }
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  const totalSecond = activeCycle ? activeCycle.minutesAmout * 60 : 0
+  const currentSecond = activeCycle ? totalSecond - amountSecondsPassed : 0
+
+  const minutesAmount = Math.floor(currentSecond / 60)
+  const secondAmound = currentSecond % 60
+
+
 
   console.log(activeCycle)
 
