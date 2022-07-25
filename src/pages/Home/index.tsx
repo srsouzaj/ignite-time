@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import React from 'react'
+import { differenceInSeconds } from 'date-fns'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
@@ -27,6 +28,7 @@ interface Cycle {
   id: string
   task: string
   minutesAmout: number
+  startDate: Date
 }
 
 export function Home() {
@@ -44,6 +46,18 @@ export function Home() {
       },
     })
 
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  React.useEffect(() => {
+    if (activeCycle) {
+      setInterval(() => {
+        setAmountSecondsPassed(
+          differenceInSeconds(new Date(), activeCycle.startDate),
+        )
+      }, 1000)
+    }
+  }, [activeCycle])
+
   function handleCreateNewCycle(data: NewCycleFormDataInterface) {
     const id = String(new Date().getTime())
 
@@ -51,6 +65,7 @@ export function Home() {
       id,
       task: data.task,
       minutesAmout: data.minutesAmount,
+      startDate: new Date(),
     }
 
     setCycles((state) => [...state, newCycle])
@@ -59,15 +74,14 @@ export function Home() {
     reset()
   }
 
-  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
-
   const totalSecond = activeCycle ? activeCycle.minutesAmout * 60 : 0
   const currentSecond = activeCycle ? totalSecond - amountSecondsPassed : 0
 
   const minutesAmount = Math.floor(currentSecond / 60)
   const secondAmound = currentSecond % 60
 
-
+  const minutes = String(minutesAmount).padStart(2, '0')
+  const seconds = String(secondAmound).padStart(2, '0')
 
   console.log(activeCycle)
 
@@ -107,11 +121,11 @@ export function Home() {
           <span>minutos.</span>
         </FormContainer>
         <CountdownContainer>
-          <span>0</span>
-          <span>0</span>
+          <span>{minutes[0]}</span>
+          <span>{minutes[1]}</span>
           <Separator>:</Separator>
-          <span>0</span>
-          <span>0</span>
+          <span>{seconds[0]}</span>
+          <span>{seconds[1]}</span>
         </CountdownContainer>
         <StartCountdownButton disabled={isSubmitDisabled} type="submit">
           <Play size={24} />
