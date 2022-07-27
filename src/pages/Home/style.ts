@@ -13,7 +13,6 @@ export const HomeContainer = styled.main`
   }
 `
 
-
 const BaseCountdownButton = styled.button`
   width: 100%;
   border: 0;

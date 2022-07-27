@@ -4,18 +4,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 
 const newCycleFormValidationSchema = zod.object({
-  task: zod.string().min(1, "Informe a tarefa"),
+  task: zod.string().min(1, 'Informe a tarefa'),
   minutesAmount: zod
     .number()
-    .min(5, "O intervalo precisa ser de - no máximo - 5 minutos")
-    .max(60, "O intervalo precisa ser de - no máximo - 60 minutos"),
-});
+    .min(5, 'O intervalo precisa ser de - no máximo - 5 minutos')
+    .max(60, 'O intervalo precisa ser de - no máximo - 60 minutos'),
+})
 
-type NewCycleFormDataInterface = zod.infer<typeof newCycleFormValidationSchema>;
+type NewCycleFormDataInterface = zod.infer<typeof newCycleFormValidationSchema>
 
 export const NewCycleForm = () => {
-  
-
   const { register, handleSubmit, watch, reset } =
     useForm<NewCycleFormDataInterface>({
       resolver: zodResolver(newCycleFormValidationSchema),
