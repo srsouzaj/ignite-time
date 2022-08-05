@@ -4,12 +4,14 @@ import {
   StartCountdownButton,
   StopCountdownButton,
 } from './style'
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 
 import React from 'react'
 import { differenceInSeconds } from 'date-fns'
 import { NewCycleForm } from './components/NewCycleForm'
 import { CountDown } from './components/Countdown'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 
 interface Cycle {
   id: string
@@ -25,6 +27,27 @@ interface CyclesContextInterface {
   activeCycleId: string | null
   markCurrentCycleAsFinished: () => void
 }
+
+const newCycleFormValidationSchema = zod.object({
+  task: zod.string().min(1, 'Informe a tarefa'),
+  minutesAmount: zod
+    .number()
+    .min(5, 'O intervalo precisa ser de - no máximo - 5 minutos')
+    .max(60, 'O intervalo precisa ser de - no máximo - 60 minutos'),
+})
+
+type NewCycleFormDataInterface = zod.infer<typeof newCycleFormValidationSchema>
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const NewCycleForm = useForm<NewCycleFormDataInterface>({
+  resolver: zodResolver(newCycleFormValidationSchema),
+  defaultValues: {
+    task: '',
+    minutesAmount: 0,
+  },
+})
+
+const { register, handleSubmit, watch, reset } = NewCycleForm
 
 export const CyclesContext = React.createContext({
   activeCycle,
@@ -89,7 +112,9 @@ export function Home() {
         <CyclesContext.Provider
           value={{ activeCycle, activeCycleId, markCurrentCycleAsFinished }}
         >
-          <NewCycleForm />
+          <FormProvider {...NewCycleForm}>
+            <NewCycleForm />
+          </FormProvider>
           <CountDown />
         </CyclesContext.Provider>
         {activeCycle ? (
