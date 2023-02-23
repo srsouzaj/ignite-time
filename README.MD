@@ -7,7 +7,7 @@
 
 Começar um projeto e perder o foco: eis um drama do desenvolvimento de software. Foco é a principal ferramenta que o dev deve ter no seu dia a dia de trabalho.
 
-Para conclusão de módulo, a fim consolidar ainda mais meus conhecimentos sendo alinhado com as novas e melhores práticas e tecnologias disponíveis no mundo da tecnologia, realizei durante o programa de aceleração “Ignite - ReactJS”, promovido pela Rocketseat, uma aplicação Frontend de um Temporizador, onde pode ter acesso aos históricos anteriores, salvos em LocalStorage. Foi criado utilizando ReactJS, Styled Components, React Hook Form, React Router Dom, React Hooks (como o useReducer), Context API, etc. 
+Para conclusão de módulo, a fim consolidar ainda mais meus conhecimentos sendo alinhado com as novas e melhores práticas e tecnologias disponíveis no mundo da tecnologia, realizei durante o programa de aceleração “Ignite - ReactJS”, promovido pela Rocketseat, uma aplicação Frontend de um Temporizador, onde pode ter acesso aos históricos anteriores, salvos em LocalStorage. O Layout - responsivo - foi criado utilizando ReactJS, Styled Components, React Hook Form, React Router Dom, React Hooks (como o useReducer), Context API, etc. 
 
 <p align="center">
   <img alt="background0" src=".github/background.png" />
